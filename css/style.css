@@ -164,44 +164,44 @@ body {
 
 .profile-image-wrapper {
   position: relative;
-  width: 160px;
-  height: 160px;
-  min-width: 160px;
-  min-height: 160px;
-  max-width: 160px;
-  max-height: 160px;
+  width: 180px;
+  height: 180px;
+  min-width: 180px;
+  min-height: 180px;
   border-radius: 50%;
   margin: 0 auto;
-  overflow: hidden;
-  box-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
-  border: 3px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+  border: 3px solid rgba(56, 189, 248, 0.6);
   animation: zoomIn 0.8s ease-out;
 }
 
+/* Sharp, crystal-clear image fitting */
 .profile-img {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: 50% 20% !important;
-  transform: scale(1.3);
+  object-position: center 24% !important; /* Adjusts framing higher up */
+  transform: none !important;
   border-radius: 50%;
   display: block;
   transition: transform 0.4s ease;
+  image-rendering: -webkit-optimize-contrast;
 }
 
+/* Sharp outer glow positioned cleanly behind the image */
 .profile-glow {
   position: absolute;
-  inset: 0;
+  inset: -6px;
   border-radius: 50%;
-  z-index: 1;
-  opacity: 0.4;
+  z-index: -1;
+  opacity: 0.5;
   background: linear-gradient(45deg, var(--primary), var(--accent));
-  filter: blur(10px);
+  filter: blur(12px);
   pointer-events: none;
 }
 
 .profile-image-wrapper:hover .profile-img {
-  transform: scale(1.4);
+  transform: scale(1.04) !important;
 }
 
 .badge-animated {
@@ -312,21 +312,21 @@ body {
   100% { transform: translateY(-5px); }
 }
 
-/* --- Glassmorphism Cards --- */
+/* --- Glassmorphism Cards Base --- */
 .glass-card {
   background: var(--card-bg);
   backdrop-filter: blur(20px);
   border: 1px solid var(--card-border);
   border-radius: 20px;
-  padding: 2.2rem;
+  padding: 1.8rem;
   position: relative;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .glass-card:hover {
-  transform: translateY(-8px) scale(1.01);
+  transform: translateY(-6px) scale(1.01);
   border-color: rgba(56, 189, 248, 0.4);
-  box-shadow: 0 20px 40px -15px var(--primary-glow);
+  box-shadow: 0 15px 30px -10px var(--primary-glow);
 }
 
 .spin-hover {
@@ -339,7 +339,7 @@ body {
 
 /* --- Section Layouts --- */
 .section {
-  padding: 5rem 8%;
+  padding: 4.5rem 8%;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -347,7 +347,7 @@ body {
 .section-title {
   font-size: 2.2rem;
   font-weight: 800;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   position: relative;
   display: inline-block;
 }
@@ -367,24 +367,19 @@ body {
 .section-title:hover::after {
   width: 100%;
 }
-/* --- Updated Grid & Certification Styles --- */
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.8rem;
-}
 
-.cert-date {
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  font-weight: 600;
-  margin-bottom: 0.6rem;
-}
 /* --- Grids --- */
 .grid-4 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  align-items: stretch; /* Keeps card heights balanced */
 }
 
 .grid-2 {
@@ -393,20 +388,55 @@ body {
   gap: 1.8rem;
 }
 
+/* --- Certifications Section Fixes --- */
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.8rem 1.5rem;
+  border-left: 4px solid var(--primary);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.5) 100%);
+  transition: all 0.4s ease;
+}
+
+.cert-card:hover {
+  border-left-color: var(--accent);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px -10px var(--primary-glow);
+}
+
+.cert-tag {
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.4rem;
+}
+
+.cert-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+.cert-date {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.cert-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
 .card-icon {
   font-size: 2.5rem;
   margin-bottom: 1.2rem;
-}
-
-.glass-card h3 {
-  margin-bottom: 0.6rem;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.glass-card p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
 }
 
 .project-tag {
@@ -510,7 +540,7 @@ body {
 /* --- Contact & Border Pulse --- */
 .contact-card {
   text-align: center;
-  padding: 4.5rem 2rem;
+  padding: 4rem 2rem;
 }
 
 .pulse-border {
@@ -579,29 +609,6 @@ footer {
   .hero-actions {
     justify-content: flex-start;
   }
-}
-
-/* --- Certifications Section --- */
-.cert-card {
-  position: relative;
-  border-left: 4px solid var(--primary);
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.5) 100%);
-  transition: all 0.4s ease;
-}
-
-.cert-card:hover {
-  border-left-color: var(--accent);
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px -10px var(--primary-glow);
-}
-
-.cert-tag {
-  color: var(--primary);
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 768px) {
